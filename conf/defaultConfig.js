@@ -10,6 +10,8 @@ var defaultConfig = {
   profile: 'desktop',
   testData: 'all',
   no: 3,
+  influxdbPort: 8086,
+  influxdbTags: 'data,tags=empty',
   graphitePort: 2003,
   graphiteNamespace: 'sitespeed.io',
   graphiteData: 'all',
