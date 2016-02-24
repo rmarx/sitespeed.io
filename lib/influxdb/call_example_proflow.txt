@@ -1,0 +1,12 @@
+
+note: use tag name "backend" instead of "server" because "server" is reserved keyword in InfluxDB and PITA to query otherwhise.
+
+Most important thing is that the current version only works for loading 1 page (so -d 0, --depth 0) and 1 browser at a time
+And that we use the 2.1 version of PhantomJS, the other ones don't do navigation timing
+
+node sitespeed.js -d 0 -v --html false --influxdbHost 127.0.0.1 --influxdbPort 9086 --influxdbDatabase demo_feb \
+--influxdbTags data,testrun=demo_feb16,testcase=2v1_bigimages,subcase=30,protocol=s2,backend=node422,frontend=sitespeed_phantomjs,traffic=native \
+--phantomjsPath ~/node_modules/sitespeed.io/bin/phantomjs-2.1.1-linux-x86_64/bin/phantomjs \
+-b headless \
+-n 10 \
+-u https://pro-flow.edm.uhasselt.be:8081/30images/index.html
