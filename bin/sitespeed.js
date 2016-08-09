@@ -23,9 +23,14 @@ require('whereis')('java', function searched(err) {
 		process.exit(1);
 	} else {
 		sitespeed.run(config, function(error, data) {
-			if (error) {
+			if (error) 
+			{
 				winston.loggers.get('sitespeed.io').error(error);
-				process.exit(1);
+				console.error(error);
+
+				// error loggin is ASYNC (even console.error)
+				// we need to give the starting process time to catch the output before we send exit signal (esp. needed when we have error directly at startup) 
+				setTimeout(function(){ process.exit(1); }, 1000);
 			}
 
 			// do we have a budget?
